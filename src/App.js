@@ -1,23 +1,42 @@
-import logo from './logo.svg';
-import './App.css';
 
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import "./App.css";
+import Main from "./Layout/Main";
+import Register from "./Register/Register";
+import Login from "./Login/Login";
+
+const router = createBrowserRouter([
+{
+  path:'/',
+  element:<Main></Main>,
+  children:[
+    {
+      path:'/',
+      element: <Register></Register>
+    },
+    {
+      path:'/register',
+      element: <Register></Register>
+    },
+    {
+      path:'/login',
+      element: <Login></Login>
+    },
+  ]
+}
+])
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+     <RouterProvider router={router}></RouterProvider>
+
+      {/* <form onSubmit={handleRegister}>
+            <input onChange={handleEmailChange} type="email" name="email" id="" placeholder='your Email' />
+            <br />
+            <input onChange={passwordChange} type="password" name="password" id="" placeholder='your password' />
+            <br />
+            <button type="submit">Register</button>
+          </form> */}
     </div>
   );
 }
